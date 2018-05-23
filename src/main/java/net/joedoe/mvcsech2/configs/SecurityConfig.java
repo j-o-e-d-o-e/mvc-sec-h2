@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/", "/home", "/h2-console/**").permitAll().anyRequest().authenticated()
-                .and().formLogin().loginPage("/login").defaultSuccessUrl("/hello").permitAll()
+                .and().formLogin().loginPage("/login").defaultSuccessUrl("/").permitAll()
                 .and().logout().permitAll();
         http.csrf().disable();
         http.headers().frameOptions().disable();

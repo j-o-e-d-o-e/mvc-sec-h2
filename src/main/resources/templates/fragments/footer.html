@@ -6,13 +6,16 @@
 </head>
 <body>
 <div class="container" th:fragment="footer">
-    <hr>
-    <span><a th:href="@{/home}">home</a></span>
-    <span sec:authorize="isAuthenticated()"><a th:href="@{/hello}">greeting</a></span>
-    <span sec:authorize="!isAuthenticated()"><a th:href="@{/login}">login</a></span>
-    <span sec:authorize="isAuthenticated()">
-        <form th:action="@{/logout}" method="post"><input type="submit" value="Sign Out"/></form>
-    </span>
+    <div class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <p class="navbar-text pull-left">© 2018 joedoe</p>
+            <p class="navbar-text pull-right" sec:authorize="isAuthenticated()">Role(s):
+                <span sec:authorize="${hasRole('ROLE_USER') and !hasRole('ROLE_ADMIN')}">User</span>
+                <span sec:authorize="${!hasRole('ROLE_USER') and hasRole('ROLE_ADMIN')}">Admin</span>
+                <span sec:authorize="${hasRole('ROLE_USER') and hasRole('ROLE_ADMIN')}">User, Admin</span>
+            </p>
+        </div>
+    </div>
 </div>
 </body>
 </html>
