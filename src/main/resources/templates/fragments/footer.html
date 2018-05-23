@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<div class="container" th:fragment="footer">
+    <hr>
+    <span><a th:href="@{/home}">home</a></span>
+    <span sec:authorize="isAuthenticated()"><a th:href="@{/hello}">greeting</a></span>
+    <span sec:authorize="!isAuthenticated()"><a th:href="@{/login}">login</a></span>
+    <span sec:authorize="isAuthenticated()">
+        <form th:action="@{/logout}" method="post"><input type="submit" value="Sign Out"/></form>
+    </span>
+</div>
+</body>
+</html>
