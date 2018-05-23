@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class MvcSecH2ApplicationTests {
+public class MvcSecH2AppTests {
 
     @Test
     public void contextLoads() {
