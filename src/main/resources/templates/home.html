@@ -11,38 +11,25 @@
             <h1>Fancy Products</h1>
         </div>
     </div>
+
     <div class="row">
-        <div class="row">
-            <!--TODO-->
-            <div class="container col-md-2"><i class="fas fa-camera-retro fa-7x" style="color:red"></i></div>
-            <div class="container col-md-2"><i class="fas fa-camera-retro fa-7x" style="color:red"></i></div>
-            <div class="container col-md-2"><i class="fas fa-camera-retro fa-7x" style="color:red"></i></div>
-            <div class="container col-md-2"><i class="fas fa-camera-retro fa-7x" style="color:red"></i></div>
-            <div class="container col-md-2"><i class="fas fa-camera-retro fa-7x" style="color:red"></i></div>
-            <div class="container col-md-2"><i class="fas fa-camera-retro fa-7x" style="color:red"></i></div>
+        <div th:each="product, it : ${products}">
+            <div class="col-md-3" th:if="${it.count lt 5}">
+                <div th:replace="fragments/products :: product">
+                </div>
+            </div>
         </div>
-        <div class="row">
-            <div class="container col-md-2"><i class="fas fa-camera-retro fa-7x" style="color:blue"></i></div>
-            <div class="container col-md-2"><i class="fas fa-camera-retro fa-7x" style="color:blue"></i></div>
-            <div class="container col-md-2"><i class="fas fa-camera-retro fa-7x" style="color:blue"></i></div>
-            <div class="container col-md-2"><i class="fas fa-camera-retro fa-7x" style="color:blue"></i></div>
-            <div class="container col-md-2"><i class="fas fa-camera-retro fa-7x" style="color:blue"></i></div>
-            <div class="container col-md-2"><i class="fas fa-camera-retro fa-7x" style="color:blue"></i></div>
-        </div>
-        <div class="row">
-            <div class="container col-md-2"><i class="fas fa-camera-retro fa-7x" style="color:green"></i></div>
-            <div class="container col-md-2"><i class="fas fa-camera-retro fa-7x" style="color:green"></i></div>
-            <div class="container col-md-2"><i class="fas fa-camera-retro fa-7x" style="color:green"></i></div>
-            <div class="container col-md-2"><i class="fas fa-camera-retro fa-7x" style="color:green"></i></div>
-            <div class="container col-md-2"><i class="fas fa-camera-retro fa-7x" style="color:green"></i></div>
-            <div class="container col-md-2"><i class="fas fa-camera-retro fa-7x" style="color:green"></i></div>
+    </div>
+
+    <div class="row">
+        <div th:each="product, it : ${products}">
+            <div class="col-md-3" th:if="${(it.count gt 4 and it.count lt 9)}">
+                <div th:replace="fragments/products :: product">
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
-
 <div th:replace="fragments/footer :: footer"></div>
 </body>
-</div>
-</div>
 </html>

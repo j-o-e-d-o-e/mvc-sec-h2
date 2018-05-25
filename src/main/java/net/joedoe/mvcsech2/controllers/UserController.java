@@ -18,6 +18,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
     @GetMapping("/registration")
     public String registration(Model model) {
         model.addAttribute("user", new User());
@@ -25,7 +30,7 @@ public class UserController {
         return "registration-form";
     }
 
-    @PostMapping("registration-done")
+    @PostMapping("/registration-done")
     public String registrationDone(@Valid User user, BindingResult resultUser, @Valid Address address, BindingResult resultAddress) {
         if (resultUser.hasErrors() || resultAddress.hasErrors()) {
             return "registration-form";

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header :: head">
+    <title>Home</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Product details</h1>
+        </div>
+    </div>
+
+    <div class="row" th:object="${product}">
+        <div class="col-md-4">
+            <h2 th:text="${product.title}"></h2>
+            <p>
+                <i th:class="${product.icon}" th:style="${product.iconColor}"></i>
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
+                et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+                rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
+                dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
+                magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+                clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        </div>
+    </div>
+    <form class="form-horizontal" th:object="${product}" th:action="@{'/order-done/'+${product.title}}" method="get">
+        <div class="row">
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-default">Order</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div th:replace="fragments/footer :: footer"></div>
+</div>
+</body>
+</html>

@@ -1,6 +1,7 @@
 package net.joedoe.mvcsech2.configs;
 
 import net.joedoe.mvcsech2.domains.Address;
+import net.joedoe.mvcsech2.domains.Product;
 import net.joedoe.mvcsech2.domains.Role;
 import net.joedoe.mvcsech2.domains.User;
 import net.joedoe.mvcsech2.services.IService;
@@ -18,6 +19,8 @@ public class BootstrapDataConfig implements ApplicationListener<ContextRefreshed
     private IService userService;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private IService productService;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -39,6 +42,22 @@ public class BootstrapDataConfig implements ApplicationListener<ContextRefreshed
     }
 
     private void loadProducts() {
-    //TODO
+        Product product1 = new Product("Beer", "A tasty pint", "fas fa-beer fa-7x", "color: #FF6766", 4.00);
+        productService.saveOrUpdate(product1);
+
+        Product product2 = new Product("Laptop", "For work and leisure", "fas fa-laptop fa-7x", "color: #97CE68", 1499.95);
+        productService.saveOrUpdate(product2);
+
+        Product product3 = new Product("Headphones", "Nice pair of headphones", "fas fa-headphones fa-7x", "color: #4BA6E0", 99.99);
+        productService.saveOrUpdate(product3);
+
+        Product product4 = new Product("Concert", "Fav band live", "fas fa-music fa-7x", "color: #ffb366", 49.99);
+        productService.saveOrUpdate(product4);
+
+        Product product5 = new Product("Bicycle", "Two wheels, one saddle", "fas fa-bicycle fa-7x", "color: green", 149.95);
+        productService.saveOrUpdate(product5);
+
+        Product product6 = new Product("Cinema", "2x Move tickets", "fas fa-film fa-7x", "color: dimgray", 20.00);
+        productService.saveOrUpdate(product6);
     }
 }
