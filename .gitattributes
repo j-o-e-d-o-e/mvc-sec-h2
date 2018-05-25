@@ -8,7 +8,7 @@
 *.java text
 *.js text
 *.css text
-#*.html text
+*.html text
 *.properties text
 *.xml text
 *.yml text
