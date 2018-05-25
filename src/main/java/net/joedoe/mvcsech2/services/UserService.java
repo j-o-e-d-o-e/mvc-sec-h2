@@ -31,6 +31,11 @@ public class UserService implements UserDetailsService, IService<User> {
     }
 
     @Override
+    public User getByName(String name) {
+        return repository.findByUsername(name);
+    }
+
+    @Override
     public User saveOrUpdate(User user) {
         return repository.save(user);
     }

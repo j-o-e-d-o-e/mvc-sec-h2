@@ -17,21 +17,30 @@
 <body>
 <div th:fragment="header" class="jumbotron">
     <div class="container">
+        <nav class="navbar navbar navbar-fixed-top">
+            <div class="container">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/logout" sec:authorize="isAuthenticated()">Logout
+                        <i class="fas fa-sign-out-alt fa-lg"></i></a>
+                    </li>
+                    <li><a href="/login" sec:authorize="!isAuthenticated()">Login
+                        <i class="fas fa-sign-in-alt fa-lg"></i></a>
+                    </li>
+                    <li><a href="/account" sec:authorize="isAuthenticated()">Account
+                        <i class="fas fa-user fa-lg"></i></a>
+                    </li>
+                    <li><a href="/registration" sec:authorize="!isAuthenticated()">Registration
+                        <i class="fas fa-user-plus fa-lg"></i></a>
+                    </li>
+                    <li><a class="navbar-brand" href="/home"><i class="fas fa-home fa-lg"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
         <div class="row">
-            <div class="col-md-10">
-                <h1 sec:authorize="!isAuthenticated()">Welcome!</h1>
-                <h1 sec:authorize="isAuthenticated()">Welcome, <span sec:authentication="principal.username"/>!</h1>
-                <p class="lead txt">Demo project using spring-mvc, spring-security, h2-db and thymeleaf.</p>
-            </div>
-            <div class="col-md-1 text-right" sec:authorize="isAuthenticated()">
-                <a href="/logout">Logout</a>
-            </div>
-            <div class="col-md-1 text-right" sec:authorize="!isAuthenticated()">
-                <a href="/login">Login</a>
-            </div>
-            <div class="col-md-1 text-right">
-                <a href="/home">Home</a>
-            </div>
+            <h1 sec:authorize="!isAuthenticated()">Welcome!</h1>
+            <h1 sec:authorize="isAuthenticated()">Welcome, <span sec:authentication="principal.username"/>!</h1>
+            <p class="lead txt">Demo project using spring-mvc, spring-security, h2-db and thymeleaf.</p>
         </div>
     </div>
 </div>

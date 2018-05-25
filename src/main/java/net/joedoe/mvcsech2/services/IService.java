@@ -7,7 +7,10 @@ public interface IService<T> {
 
     T getById(Integer id);
 
+    T getByName(String name);
+
     T saveOrUpdate(T t);
 
     void delete(Integer id);
+
 }

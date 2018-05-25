@@ -33,18 +33,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/", "/home", "/h2-console/**").permitAll().anyRequest().authenticated()
+                .antMatchers("/", "/home", "/registration/**","/registration-done/**", "/h2-console/**").permitAll().anyRequest().authenticated()
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/").permitAll()
                 .and().logout().permitAll();
         http.csrf().disable();
         http.headers().frameOptions().disable();
     }
-
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        auth
-//                .inMemoryAuthentication()
-//                .withUser("joe").password("{noop}doe").roles("ADMIN", "USER")
-//                .and().withUser("mary").password("{noop}jane").roles("USER");
-//    }
 }

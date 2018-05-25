@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:include="fragments/header :: head">
+    <title>Home</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Account</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" sec:authorize="isAuthenticated()">You have successfully updated your account!</div>
+        <div class="col-md-12" sec:authorize="!isAuthenticated()">You have successfully created your account!</div>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</div>
+</div>
+</html>

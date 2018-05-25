@@ -7,23 +7,20 @@
 <body>
 <div th:replace="fragments/header :: header"></div>
 <div class="container">
+    <h2>Login</h2>
     <div class="row">
-        <div class="col-md-1">
-            <h2>Login</h2>
-        </div>
-    </div>
-    <div class="row">
-        <div th:if="${param.error}" class="col-md-5 alert alert-danger">
+        <label class="col-md-2 control-label"></label>
+        <div th:if="${param.error}" class="col-md-4 alert alert-danger">
             <p>Invalid username and password.</p>
         </div>
-        <div th:if="${param.logout}" class="col-md-5 alert alert-danger">
+        <div th:if="${param.logout}" class="col-md-4 alert alert-danger">
             <p>You have been logged out.</p>
         </div>
     </div>
     <form class="form-horizontal" th:action="@{/login}" method="post">
         <div class="row">
             <div class="form-group">
-                <label class="col-md-1 control-label">Username:</label>
+                <label class="col-md-2 control-label">Username:</label>
                 <div class="col-md-4">
                     <input type="text" class="form-control" name="username" id="username"/>
                 </div>
@@ -31,7 +28,7 @@
         </div>
         <div class="row">
             <div class="form-group">
-                <label class="col-md-1 control-label">Password:</label>
+                <label class="col-md-2 control-label">Password:</label>
                 <div class="col-md-4">
                     <input type="password" class="form-control" name="password" id="password"/>
                 </div>
@@ -39,7 +36,7 @@
         </div>
         <div class="row">
             <div class="form-group">
-                <label class="col-md-1 control-label"></label>
+                <label class="col-md-2 control-label"></label>
                 <div class="col-md-4">
                     <button type="submit" class="btn btn-default">Submit</button>
                 </div>
