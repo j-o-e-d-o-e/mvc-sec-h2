@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress ALL -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="head">
     <meta charset="UTF-8">
@@ -10,10 +11,12 @@
 <body>
 <div th:fragment="product">
     <div class="col-md-3">
+        <!--/*@thymesVar id="product" type="templates"*/-->
         <h2 th:text="${product.title}"></h2>
         <p>
             <a th:href="@{'/product/'+${product.id}}">
-                <i th:class="${product.icon == '' || product.icon == null ? 'fas fa-file fa-7x' : 'fas fa-' + product.icon + ' fa-7x'}" th:style="${product.color == '' || product.color == null ? 'color: #FF6766' : 'color:' + product.color}"></i>
+                <i th:class="${product.icon == '' || product.icon == null ? 'fas fa-file fa-7x' : 'fas fa-' + product.icon + ' fa-7x'}"
+                   th:style="${product.color == '' || product.color == null ? 'color: #FF6766' : 'color:' + product.color}"></i>
             </a>
         </p>
         <p>
