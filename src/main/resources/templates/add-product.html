@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header :: head">
+    <title>Home</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div class="container">
+    <h2>Products</h2>
+    <form class="form-horizontal" th:object="${product}" th:action="@{/product-added}" method="post">
+        <div class="row">
+            <label class="col-md-2 control-label"></label>
+            <div th:if="${#fields.hasErrors('*')}" class="col-md-6 alert alert-danger">
+                <p th:text="#{registration.hasErrors}">Error Message</p>
+            </div>
+        </div>
+
+        <div class="form-group" th:class="${#fields.hasErrors('title')} ? 'form-group has-error' : 'form-group'">
+            <label class="col-md-2 control-label">Title:</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" th:field="*{title}" th:errorclass="has-error"/>
+                <span class="help-block" th:if="${#fields.hasErrors('title')}">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('title')}" th:text="${err}"/>
+                       </ul>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group" th:class="${#fields.hasErrors('description')} ? 'form-group has-error' : 'form-group'">
+            <label class="col-md-2 control-label">Description:</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" th:field="*{description}" th:errorclass="has-error"/>
+                <span class="help-block" th:if="${#fields.hasErrors('description')}">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('description')}" th:text="${err}"/>
+                       </ul>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group" th:class="${#fields.hasErrors('color')} ? 'form-group has-error' : 'form-group'">
+            <label class="col-md-2 control-label">Color:</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" th:field="*{color}" th:errorclass="has-error"/>
+                <span class="help-block" th:if="${#fields.hasErrors('color')}">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('color')}" th:text="${err}"/>
+                       </ul>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group" th:class="${#fields.hasErrors('price')} ? 'form-group has-error' : 'form-group'">
+            <label class="col-md-2 control-label">Price:</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" th:field="*{price}" th:errorclass="has-error"/>
+                <span class="help-block" th:if="${#fields.hasErrors('price')}">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('price')}" th:text="${err}"/>
+                       </ul>
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label class="col-md-2 control-label"></label>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</div>
+</div>
+</html>

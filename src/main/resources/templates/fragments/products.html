@@ -9,16 +9,18 @@
 </head>
 <body>
 <div th:fragment="product">
-    <h2 th:text="${product.title}"></h2>
-    <p>
-        <a th:href="@{'/product/'+${product.id}}">
-            <i th:class="${product.icon}" th:style="${product.iconColor}"></i>
-        </a>
-    </p>
-    <p>
-    <div th:text="${product.description}"></div>
-    <div th:text="${product.price + ' €'}"></div>
-    </p>
+    <div class="col-md-3">
+        <h2 th:text="${product.title}"></h2>
+        <p>
+            <a th:href="@{'/product/'+${product.id}}">
+                <i th:class="${product.icon}" th:style="${product.color}"></i>
+            </a>
+        </p>
+        <p>
+        <div th:text="${product.description}"></div>
+        <div th:text="${product.price + ' €'}"></div>
+        </p>
+    </div>
 </div>
 </body>
 </html>

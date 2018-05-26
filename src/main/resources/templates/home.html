@@ -8,25 +8,18 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Fancy Products</h1>
+            <h1>Product catalogue</h1>
         </div>
     </div>
 
-    <div class="row">
-        <div th:each="product, it : ${products}">
-            <div class="col-md-3" th:if="${it.count lt 5}">
-                <div th:replace="fragments/products :: product">
-                </div>
+    <div th:each="product, it : ${products}">
+        <div th:if="${it.count % 4 == 0}">
+            <div class="row">
+                <div th:replace="fragments/products :: product"></div>
             </div>
         </div>
-    </div>
-
-    <div class="row">
-        <div th:each="product, it : ${products}">
-            <div class="col-md-3" th:if="${(it.count gt 4 and it.count lt 9)}">
-                <div th:replace="fragments/products :: product">
-                </div>
-            </div>
+        <div th:if="${it.count % 4 != 0}">
+            <div th:replace="fragments/products :: product"></div>
         </div>
     </div>
 </div>

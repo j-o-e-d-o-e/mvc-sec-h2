@@ -20,6 +20,8 @@
         <nav class="navbar navbar navbar-fixed-top">
             <div class="container">
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a href="add-product"  sec:authorize="${hasRole('ROLE_ADMIN')}">Add product</a>
+                    </li>
                     <li><a href="/logout" sec:authorize="isAuthenticated()">Logout
                         <i class="fas fa-sign-out-alt fa-lg"></i></a>
                     </li>

@@ -18,14 +18,14 @@ public class Product {
     private String title;
     private String description;
     private String icon;
-    private String iconColor;
+    private String color;
     private double price;
 
-    public Product(String title, String description, String icon, String iconColor, double price) {
+    public Product(String title, String description, String icon, String color, double price) {
         this.title = title;
         this.description = description;
         this.icon = icon;
-        this.iconColor = iconColor;
+        this.color = color;
         this.price = price;
     }
 }
