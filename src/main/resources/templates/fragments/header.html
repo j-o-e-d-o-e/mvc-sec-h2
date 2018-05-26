@@ -41,7 +41,7 @@
         </nav>
         <div class="row">
             <h1 sec:authorize="!isAuthenticated()">Welcome!</h1>
-            <h1 sec:authorize="isAuthenticated()">Welcome, <span sec:authentication="principal.username"/>!</h1>
+            <h1 sec:authorize="isAuthenticated()">Welcome, <span sec:authentication="principal.username"></span>!</h1>
             <p class="lead txt">Demo project using spring-mvc, spring-security, h2-db and thymeleaf.</p>
         </div>
     </div>

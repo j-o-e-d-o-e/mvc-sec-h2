@@ -17,51 +17,51 @@
         </div>
 
         <div class="form-group" th:class="${#fields.hasErrors('title')} ? 'form-group has-error' : 'form-group'">
-            <label class="col-md-2 control-label">Title:</label>
+            <label for="title" class="col-md-2 control-label">Title:</label>
             <div class="col-md-6">
-                <input type="text" class="form-control" th:field="*{title}" th:errorclass="has-error"/>
+                <input id="title" type="text" class=" col-md-6form-control" th:field="*{title}" th:errorclass="has-error"/>
             </div>
             <div class="col-md-4">
                 <ul class="help-block" th:if="${#fields.hasErrors('title')}">
-                    <li th:each="err : ${#fields.errors('title')}" th:text="${err}"/>
+                    <li th:each="err : ${#fields.errors('title')}" th:text="${err}"></li>
                 </ul>
             </div>
         </div>
 
         <div class="form-group" th:class="${#fields.hasErrors('description')} ? 'form-group has-error' : 'form-group'">
-            <label class="col-md-2 control-label">Description:</label>
+            <label for="description" class="col-md-2 control-label">Description:</label>
             <div class="col-md-6">
-                <input type="text" class="form-control" th:field="*{description}" th:errorclass="has-error"/>
+                <input id="description" type="text" class="form-control" th:field="*{description}" th:errorclass="has-error"/>
             </div>
             <div class="col-md-4">
                 <ul class="help-block" th:if="${#fields.hasErrors('description')}">
-                    <li th:each="err : ${#fields.errors('description')}" th:text="${err}"/>
+                    <li th:each="err : ${#fields.errors('description')}" th:text="${err}"></li>
                 </ul>
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-md-2 control-label">Icon:</label>
+            <label for="icon" class="col-md-2 control-label">Icon:</label>
             <div class="col-md-6">
-                <input type="text" class="form-control" th:field="*{icon}"/>
+                <input id="icon" type="text" class="form-control" th:field="*{icon}"/>
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-md-2 control-label">Color:</label>
+            <label for="color" class="col-md-2 control-label">Color:</label>
             <div class="col-md-6">
-                <input type="text" class="form-control" th:field="*{color}"/>
+                <input id="color" type="text" class="form-control" th:field="*{color}"/>
             </div>
         </div>
 
         <div class="form-group" th:class="${#fields.hasErrors('price')} ? 'form-group has-error' : 'form-group'">
-            <label class="col-md-2 control-label">Price:</label>
+            <label for="price" class="col-md-2 control-label">Price:</label>
             <div class="col-md-6">
-                <input type="text" class="form-control" th:field="*{price}" th:errorclass="has-error"/>
+                <input id="price" type="text" class="form-control" th:field="*{price}" th:errorclass="has-error"/>
             </div>
             <div class="col-md-4">
                 <ul class="help-block" th:if="${#fields.hasErrors('price')}">
-                    <li th:each="err : ${#fields.errors('price')}" th:text="${err}"/>
+                    <li th:each="err : ${#fields.errors('price')}" th:text="${err}"></li>
                 </ul>
             </div>
         </div>
@@ -78,6 +78,4 @@
 </div>
 <div th:replace="fragments/footer :: footer"></div>
 </body>
-</div>
-</div>
 </html>
