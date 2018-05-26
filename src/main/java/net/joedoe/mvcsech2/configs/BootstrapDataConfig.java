@@ -42,31 +42,22 @@ public class BootstrapDataConfig implements ApplicationListener<ContextRefreshed
     }
 
     private void loadProducts() {
-        Product product1 = new Product("Beer", "A tasty pint", "fas fa-beer fa-7x", "color: #FF6766", 4.00);
+        Product product1 = new Product("Beer", "A tasty pint", "beer", "#FF6766", 4.00);
         productService.saveOrUpdate(product1);
 
-        Product product2 = new Product("Laptop", "For work and leisure", "fas fa-laptop fa-7x", "color: #97CE68", 1499.95);
+        Product product2 = new Product("Laptop", "For work and leisure", "laptop", "#97CE68", 1499.95);
         productService.saveOrUpdate(product2);
 
-        Product product3 = new Product("Headphones", "Quiet comfort", "fas fa-headphones fa-7x", "color: #4BA6E0", 249.95);
+        Product product3 = new Product("Headphones", "Quiet comfort", "headphones", "#4BA6E0", 249.95);
         productService.saveOrUpdate(product3);
 
-        Product product4 = new Product("Concert", "2x concert tickets", "fas fa-music fa-7x", "color: #ffb366", 79.90);
+        Product product4 = new Product("Concert", "2x concert tickets", "music", "#ffb366", 79.90);
         productService.saveOrUpdate(product4);
 
-        Product product5 = new Product("Bicycle", "Two wheels, one saddle", "fas fa-bicycle fa-7x", "color: green", 889.95);
+        Product product5 = new Product("Bicycle", "Two wheels, one saddle", "bicycle", "green", 889.95);
         productService.saveOrUpdate(product5);
 
-        Product product6 = new Product("Cinema", "2x movie tickets", "fas fa-film fa-7x", "color: dimgray", 20.00);
+        Product product6 = new Product("Cinema", "2x movie tickets", "film", "dimgray", 20.00);
         productService.saveOrUpdate(product6);
-
-        Product product7 = new Product("Cinema", "2x movie tickets", "fas fa-film fa-7x", "color: dimgray", 20.00);
-        productService.saveOrUpdate(product7);
-
-        Product product8 = new Product("Cinema", "2x movie tickets", "fas fa-film fa-7x", "color: dimgray", 20.00);
-        productService.saveOrUpdate(product8);
-
-        Product product9 = new Product("Cinema", "2x movie tickets", "fas fa-film fa-7x", "color: dimgray", 20.00);
-        productService.saveOrUpdate(product9);
     }
 }

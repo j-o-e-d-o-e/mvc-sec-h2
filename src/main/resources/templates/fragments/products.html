@@ -13,12 +13,12 @@
         <h2 th:text="${product.title}"></h2>
         <p>
             <a th:href="@{'/product/'+${product.id}}">
-                <i th:class="${product.icon}" th:style="${product.color}"></i>
+                <i th:class="${product.icon == '' || product.icon == null ? 'fas fa-file fa-7x' : 'fas fa-' + product.icon + ' fa-7x'}" th:style="${product.color == '' || product.color == null ? 'color: #FF6766' : 'color:' + product.color}"></i>
             </a>
         </p>
         <p>
         <div th:text="${product.description}"></div>
-        <div th:text="${product.price + ' €'}"></div>
+        <div th:text="${product.price > 0 ? product.price + ' €' : 'FREE'}"></div>
         </p>
     </div>
 </div>

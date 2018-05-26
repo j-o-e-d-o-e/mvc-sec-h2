@@ -38,16 +38,14 @@ public class ProductController {
     @GetMapping("/add-product")
     public String addProduct(Model model){
         model.addAttribute("product", new Product());
-        return "add-product";
+        return "product-form";
     }
 
     @PostMapping("/product-added")
     public String registrationDone(@Valid Product product, BindingResult result) {
         if (result.hasErrors()) {
-            return "add-product";
+            return "product-form";
         }
-        product.setIcon("fas fa-square fa-7x");
-        product.setColor("color: " + product.getColor());
         productService.saveOrUpdate(product);
         return "product-added";
     }
