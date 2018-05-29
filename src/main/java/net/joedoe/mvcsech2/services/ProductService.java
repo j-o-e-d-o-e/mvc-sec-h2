@@ -2,16 +2,17 @@ package net.joedoe.mvcsech2.services;
 
 import net.joedoe.mvcsech2.domains.Product;
 import net.joedoe.mvcsech2.repositories.IProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 public class ProductService implements IService<Product> {
-    @Autowired
     private IProductRepository repository;
+
+    public ProductService(IProductRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public List<Product> listAll() {
@@ -20,7 +21,7 @@ public class ProductService implements IService<Product> {
 
     @Override
     public Product getById(Integer id) {
-        return repository.findById(id).get();
+        return repository.findById(id).orElse(null);
     }
 
     @Override
@@ -29,13 +30,7 @@ public class ProductService implements IService<Product> {
     }
 
     @Override
-    public Product saveOrUpdate(Product product) {
-        return repository.save(product);
-    }
-
-    @Override
-    @Transactional
-    public void delete(Integer id) {
-        repository.deleteById(id);
+    public void saveOrUpdate(Product product) {
+        repository.save(product);
     }
 }

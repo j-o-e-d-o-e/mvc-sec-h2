@@ -1,6 +1,5 @@
 package net.joedoe.mvcsech2.configs;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,9 +12,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    @Qualifier("userService")
-    UserDetailsService userDetailsService;
+    private UserDetailsService userDetailsService;
+
+    public SecurityConfig(@Qualifier("userService") UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -33,7 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/", "/home", "/registration/**","/registration-done/**","/product/**", "/h2-console/**").permitAll().anyRequest().authenticated()
+                .antMatchers("/", "/home", "/registration", "/registration-done", "/product/**", "/h2-console/**").permitAll().anyRequest().authenticated()
+                .and().authorizeRequests().antMatchers("/product-form", "/product-added").hasRole("ADMIN")
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/").permitAll()
                 .and().logout().permitAll();
         http.csrf().disable();

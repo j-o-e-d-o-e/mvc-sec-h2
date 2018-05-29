@@ -9,8 +9,5 @@ public interface IService<T> {
 
     T getByName(String name);
 
-    T saveOrUpdate(T t);
-
-    void delete(Integer id);
-
+    void saveOrUpdate(T t);
 }

@@ -1,8 +1,7 @@
 package net.joedoe.mvcsech2.controllers;
 
 import net.joedoe.mvcsech2.domains.Product;
-import net.joedoe.mvcsech2.services.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
+import net.joedoe.mvcsech2.services.IService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,8 +13,11 @@ import javax.validation.Valid;
 
 @Controller
 public class ProductController {
-    @Autowired
-    private ProductService productService;
+    private IService<Product> productService;
+
+    public ProductController(IService<Product> productService) {
+        this.productService = productService;
+    }
 
     @GetMapping({"/", "/home"})
     public String home(Model model) {
@@ -29,14 +31,9 @@ public class ProductController {
         return "product";
     }
 
-    @GetMapping("/order-done/{title}")
-    public String orderDone(@PathVariable String title, Model model){
-        model.addAttribute("title", title);
-        return "order-done";
-    }
 
     @GetMapping("/add-product")
-    public String addProduct(Model model){
+    public String addProduct(Model model) {
         model.addAttribute("product", new Product());
         return "product-form";
     }

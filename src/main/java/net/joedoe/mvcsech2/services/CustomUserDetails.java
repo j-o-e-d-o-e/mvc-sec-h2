@@ -14,7 +14,7 @@ public class CustomUserDetails implements UserDetails {
     private Collection<SimpleGrantedAuthority> authorities;
     private String username;
     private String password;
-    private Boolean enabled = true;
+    private Boolean enabled;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

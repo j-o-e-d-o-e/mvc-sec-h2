@@ -3,12 +3,11 @@ package net.joedoe.mvcsech2.domains;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -18,16 +17,19 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @NotEmpty
-    private String title;
+    private String name;
     @NotEmpty
     private String description;
     private String icon;
     private String color;
     @NotNull
     private double price;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "USER_PRODUCT", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private List<User> users = new ArrayList<>();
 
-    public Product(String title, String description, String icon, String color, double price) {
-        this.title = title;
+    public Product(String name, String description, String icon, String color, double price) {
+        this.name = name;
         this.description = description;
         this.icon = icon;
         this.color = color;

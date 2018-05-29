@@ -23,7 +23,7 @@ public class User {
     @NotEmpty
     private String username;
     @NotEmpty
-    @Size(min=3)
+    @Size(min = 3)
     private String password;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
@@ -31,6 +31,9 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "USER_PRODUCT", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private List<Product> products = new ArrayList<>();
 
     public User(String firstName, String lastName, String username, String password) {
         this.firstName = firstName;
@@ -49,5 +52,17 @@ public class User {
         if (!roles.contains(role)) {
             roles.add(role);
         }
+    }
+
+    public void addProduct(Product product) {
+        products.add(product);
+    }
+
+    public void removeAllProducts(){
+        products.clear();
+    }
+
+    public double sum() {
+        return products.stream().mapToDouble(Product::getPrice).sum();
     }
 }
