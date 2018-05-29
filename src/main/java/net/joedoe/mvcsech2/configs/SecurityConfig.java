@@ -32,13 +32,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.authorizeRequests().antMatchers("/add-product", "/product-added").hasRole("ADMIN")
                 .antMatchers("/", "/home", "/registration", "/registration-done", "/product/**", "/h2-console/**").permitAll().anyRequest().authenticated()
-                .and().authorizeRequests().antMatchers("/product-form", "/product-added").hasRole("ADMIN")
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/").permitAll()
                 .and().logout().permitAll();
-        http.csrf().disable();
-        http.headers().frameOptions().disable();
+        httpSecurity.csrf().disable();
+        httpSecurity.headers().frameOptions().disable();
     }
 }
