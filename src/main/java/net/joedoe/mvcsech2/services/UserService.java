@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class UserService implements UserDetailsService, IService<User> {
@@ -51,6 +52,11 @@ public class UserService implements UserDetailsService, IService<User> {
         if (user.getId() == null) {
             user.addRole(new Role("ROLE_USER"));
             user.setPassword(passwordEncoder.encode(user.getPassword()));
+        } else if (user.isUpdate()){
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            user.setRoles(Objects.requireNonNull(repository.findById(user.getId()).orElse(null)).getRoles());
+            user.setProducts(Objects.requireNonNull(repository.findById(user.getId()).orElse(null)).getProducts());
+            user.setUpdate(false);
         }
         repository.save(user);
     }

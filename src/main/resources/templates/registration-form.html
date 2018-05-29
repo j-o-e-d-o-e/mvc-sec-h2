@@ -9,6 +9,7 @@
     <h2 sec:authorize="isAuthenticated()">Account details</h2>
 
     <form class="form-horizontal" th:object="${user}" th:action="@{/registration-done}" method="post">
+        <input title="id" class="hidden" th:field="*{id}"/>
         <div class="row">
             <label class="col-md-2 control-label"></label>
             <div th:if="${#fields.hasErrors('*')}" class="col-md-6 alert alert-danger">
@@ -19,7 +20,8 @@
         <div class="form-group" th:class="${#fields.hasErrors('firstName')} ? 'form-group has-error' : 'form-group'">
             <label for="firstName" class="col-md-2 control-label">First Name:</label>
             <div class="col-md-6">
-                <input id="firstName" type="text" class="form-control" th:field="*{firstName}" th:errorclass="has-error"/>
+                <input id="firstName" type="text" class="form-control" th:field="*{firstName}"
+                       th:errorclass="has-error"/>
             </div>
             <div class="col-md-4">
                 <ul class="help-block" th:if="${#fields.hasErrors('firstName')}">
@@ -55,7 +57,8 @@
         <div class="form-group" th:class="${#fields.hasErrors('password')} ? 'form-group has-error' : 'form-group'">
             <label for="password" class="col-md-2 control-label">Password:</label>
             <div class="col-md-6">
-                <input id="password" type="password" class="form-control" th:field="*{password}" th:errorclass="has-error"/>
+                <input id="password" type="password" class="form-control" th:field="*{password}"
+                       th:errorclass="has-error"/>
             </div>
             <div class="col-md-4">
                 <ul class="help-block" th:if="${#fields.hasErrors('password')}">
@@ -81,7 +84,8 @@
             <div class="form-group" th:class="${#fields.hasErrors('zipCode')} ? 'form-group has-error' : 'form-group'">
                 <label for="zipCode" class="col-md-2 control-label">Zip code:</label>
                 <div class="col-md-6">
-                    <input id="zipCode" type="text" class="form-control" th:field="*{zipCode}" th:errorclass="has-error"/>
+                    <input id="zipCode" type="text" class="form-control" th:field="*{zipCode}"
+                           th:errorclass="has-error"/>
                 </div>
                 <div class="col-md-4">
                     <ul class="help-block" th:if="${#fields.hasErrors('zipCode')}">

@@ -34,6 +34,8 @@ public class User {
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "USER_PRODUCT", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> products = new ArrayList<>();
+    @Transient
+    private boolean update = false;
 
     public User(String firstName, String lastName, String username, String password) {
         this.firstName = firstName;

@@ -49,8 +49,10 @@ public class UserController {
         if (resultUser.hasErrors() || resultAddress.hasErrors()) {
             return "registration-form";
         }
-        System.out.println(user);
         user.addAddress(address);
+        if (user.getId() != null) {
+            user.setUpdate(true);
+        }
         userService.saveOrUpdate(user);
         return "registration-done";
     }
