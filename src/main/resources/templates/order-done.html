@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:include="fragments/header :: head">
-    <title>Home</title>
-</head>
+<head th:include="fragments/header :: head"></head>
 <body>
 <div th:replace="fragments/header :: header"></div>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Order</h1>
+            <h1>Order received</h1>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">You have successfully ordered a <span th:text="${title}"></span>!</div>
+        <div class="col-md-12">Your products will be sent to <span th:text="${address}"></span>!</div>
     </div>
 </div>
 <div th:replace="fragments/footer :: footer"></div>

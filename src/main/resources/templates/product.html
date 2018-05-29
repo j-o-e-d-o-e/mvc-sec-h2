@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:include="fragments/header :: head">
-    <title>Home</title>
-</head>
+<head th:include="fragments/header :: head"></head>
 <body>
 <div th:replace="fragments/header :: header"></div>
 <div class="container">
@@ -12,10 +10,10 @@
         </div>
     </div>
 
-    <div th:object="${product}">
+    <form class="form-horizontal" th:object="${product}" th:action="@{'/added-to-cart/'+${product.id}}">
         <div class="row">
             <div class="col-md-4">
-                <h2 th:text="${product.title}"></h2>
+                <h2 th:text="${product.name}"></h2>
             </div>
         </div>
 
@@ -25,35 +23,21 @@
                    th:style="${product.color == '' || product.color == null ? 'color: #FF6766' : 'color:' + product.color}"></i>
             </div>
             <div class="col-md-6">
-                <p>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-                    labore
-                    et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-                    rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-                    ipsum
-                    dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-                    dolore
-                    magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-                    Stet
-                    clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-                </p>
+                <p th:text="#{dummy.text}"></p>
             </div>
         </div>
 
-        <form class="form-horizontal" th:object="${product}" th:action="@{'/order-done/'+${product.title}}"
-              method="get">
-            <div class="row">
-                <div class="col-md-2"
-                     th:text="${product.price > 0 ? 'Price: ' + product.price + ' €' : 'Price: FREE'}"></div>
-                <div class="form-group">
-                    <div class="col-md-4">
-                        <button type="submit" class="btn btn-default">Order</button>
-                    </div>
+        <div class="row">
+            <div class="col-md-2"
+                 th:text="${product.price > 0 ? 'Price: ' + product.price + ' €' : 'Price: FREE'}"></div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-default">Put in cart</button>
                 </div>
             </div>
-        </form>
-    </div>
-    <div th:replace="fragments/footer :: footer"></div>
+        </div>
+    </form>
 </div>
+<div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

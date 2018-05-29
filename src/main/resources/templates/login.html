@@ -1,9 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
->
-<head th:include="fragments/header :: head">
-    <title>Login</title>
-</head>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header :: head"></head>
 <body>
 <div th:replace="fragments/header :: header"></div>
 <div class="container">
@@ -11,9 +8,11 @@
 
     <div class="row">
         <label class="col-md-2 control-label"></label>
+        <!--suppress ThymeleafVariablesResolveInspection -->
         <div th:if="${param.error}" class="col-md-4 alert alert-danger">
             <p>Invalid username and password.</p>
         </div>
+        <!--suppress ThymeleafVariablesResolveInspection -->
         <div th:if="${param.logout}" class="col-md-4 alert alert-danger">
             <p>You have been logged out.</p>
         </div>

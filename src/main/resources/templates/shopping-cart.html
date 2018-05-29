@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header :: head"></head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Shopping cart</h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Icon</th>
+            <th>Name</th>
+            <th>Details</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${products}">
+            <td th:text="${product.id}"></td>
+            <td>
+                <i th:class="${product.icon == '' || product.icon == null ? 'fas fa-file' : 'fas fa-' + product.icon}"
+                   th:style="${product.color == '' || product.color == null ? 'color: #FF6766' : 'color:' + product.color}"></i>
+            </td>
+            <td th:text="${product.name}"></td>
+            <td><a th:href="@{'/product/'+${product.id}}">Link</a></td>
+            <td th:text="${product.price}"></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td th:text="${sum}"></td>
+        </tr>
+        </tfoot>
+    </table>
+    <div class="row">
+        <div class="col-md-3 pull-right">
+            <a href="/order-done" class="btn btn-default" role="button">Order</a>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
