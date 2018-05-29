@@ -38,7 +38,7 @@ public class BootstrapDataConfig implements ApplicationListener<ContextRefreshed
     }
 
     private void loadProducts() {
-        Product product1 = new Product("Beer", "A tasty pint", "beer", "#FF6766", 4.00);
+        Product product1 = new Product("Phone", "A telephone", "phone", "#FF6766", 49.99);
         productService.saveOrUpdate(product1);
 
         Product product2 = new Product("Laptop", "For work and leisure", "laptop", "#97CE68", 1499.95);
@@ -55,5 +55,8 @@ public class BootstrapDataConfig implements ApplicationListener<ContextRefreshed
 
         Product product6 = new Product("Cinema", "2x movie tickets", "film", "dimgray", 20.00);
         productService.saveOrUpdate(product6);
+
+        Product product7 = new Product("Magnet", "Versatile", "magnet", "#FF6766", 9.95);
+        productService.saveOrUpdate(product7);
     }
 }
