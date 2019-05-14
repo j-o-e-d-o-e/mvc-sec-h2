@@ -23,7 +23,8 @@ public class IUserRepositoryIT {
     @Test
     public void findByUsername() {
         userRepository.save(new User("Joe", "Doe", "joe", "doe"));
-        User user = userRepository.findByUsername("joe");
+        User user = userRepository.findByUsername("joe").orElse(null);
+        assert user != null;
         assertEquals("doe", user.getPassword());
     }
 }

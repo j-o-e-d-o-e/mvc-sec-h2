@@ -42,13 +42,13 @@ public class UserService implements UserDetailsService, IService<User> {
 
     @Override
     public User getByName(String name) {
-        return userRepository.findByUsername(name);
+        return userRepository.findByUsername(name).orElse(null);
     }
 
     @Override
     public void saveOrUpdate(User user) {
         if (user.getId() == null) {
-            user.addRole(roleRepository.findByName("ROLE_USER"));
+            user.addRole(roleRepository.findByName("ROLE_USER").orElse(null));
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         } else if (user.isUpdate()) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -67,7 +67,7 @@ public class UserService implements UserDetailsService, IService<User> {
                     user.getRoles().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
                     return new CustomUserDetails(authorities, user.getUsername(), user.getPassword(), true);
                 };
-        User user = userRepository.findByUsername(username);
+        User user = userRepository.findByUsername(username).orElse(null);
         if (user == null) {
             throw new UsernameNotFoundException(username);
         }

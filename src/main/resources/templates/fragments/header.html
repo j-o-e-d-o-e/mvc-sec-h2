@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head th:fragment="head">
     <meta charset="UTF-8">
     <title>Demo project</title>
@@ -62,7 +62,7 @@
         <div class="row">
             <h1 sec:authorize="!isAuthenticated()">Welcome!</h1>
             <h1 sec:authorize="isAuthenticated()">Welcome, <span sec:authentication="principal.username"></span>!</h1>
-            <p class="lead txt">Demo project using spring-mvc, spring-security, h2-db and thymeleaf.</p>
+            <p class="lead txt">Demo project for spring-mvc, spring-security, docker-mysql-db/h2-db and thymeleaf.</p>
         </div>
     </div>
 </div>

@@ -8,10 +8,12 @@ import net.joedoe.mvcsech2.domains.User;
 import net.joedoe.mvcsech2.repositories.IRoleRepository;
 import net.joedoe.mvcsech2.services.IService;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 @Component
+@Profile("h2")
 @Slf4j
 public class BootstrapDataConfig implements ApplicationListener<ContextRefreshedEvent> {
     private IService<User> userService;
@@ -38,7 +40,8 @@ public class BootstrapDataConfig implements ApplicationListener<ContextRefreshed
         User user2 = new User("Joe", "Doe", "joe", "doe");
         user2.addAddress(new Address("Bourbon St 3", "12345", "Seville"));
         user2.addAddress(new Address("Main Ave 666", "54321", "Metropolis"));
-        Role admin = roleRepository.findByName("ROLE_ADMIN");
+        Role admin = roleRepository.findByName("ROLE_ADMIN").orElse(null);
+        assert admin != null;
         log.info(admin.toString());
         user2.addRole(admin);
         userService.saveOrUpdate(user2);
