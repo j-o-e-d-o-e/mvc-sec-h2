@@ -1,4 +1,4 @@
-# mvc-sec-h2
+# mvc_sec_sql
 This demo project uses spring-mvc, spring-security, jpa-provider hibernate, mysql as docker-container, in-memory-database h2 and template-engine thymeleaf.
 
 ![home](https://user-images.githubusercontent.com/26798159/40691610-2112d592-63ad-11e8-9532-5c8bae9609b7.png)
