@@ -15,8 +15,8 @@ import javax.validation.constraints.Size;
 @Entity
 public class Address {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @NotEmpty
     private String street;
     @NotEmpty

@@ -1,14 +1,14 @@
 package net.joedoe.mvcsech2.services;
 
-import net.joedoe.mvcsech2.domains.Role;
 import net.joedoe.mvcsech2.domains.User;
+import net.joedoe.mvcsech2.repositories.IRoleRepository;
 import net.joedoe.mvcsech2.repositories.IUserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,46 +19,44 @@ import java.util.Objects;
 
 @Service
 public class UserService implements UserDetailsService, IService<User> {
-    private IUserRepository repository;
+    private IUserRepository userRepository;
+    private IRoleRepository roleRepository;
+
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    public void setRepository(IUserRepository repository) {
-        this.repository = repository;
-    }
-
-    @Autowired
-    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
+    public UserService(IUserRepository userRepository, IRoleRepository roleRepository) {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.passwordEncoder = new BCryptPasswordEncoder(11);
     }
 
     @Override
     public List<User> listAll() {
-        return (List<User>) repository.findAll();
+        return (List<User>) userRepository.findAll();
     }
 
     @Override
-    public User getById(Integer id) {
-        return repository.findById(id).orElse(null);
+    public User getById(Long id) {
+        return userRepository.findById(id).orElse(null);
     }
 
     @Override
     public User getByName(String name) {
-        return repository.findByUsername(name);
+        return userRepository.findByUsername(name);
     }
 
     @Override
     public void saveOrUpdate(User user) {
         if (user.getId() == null) {
-            user.addRole(new Role("ROLE_USER"));
+            user.addRole(roleRepository.findByName("ROLE_USER"));
             user.setPassword(passwordEncoder.encode(user.getPassword()));
-        } else if (user.isUpdate()){
+        } else if (user.isUpdate()) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
-            user.setRoles(Objects.requireNonNull(repository.findById(user.getId()).orElse(null)).getRoles());
-            user.setProducts(Objects.requireNonNull(repository.findById(user.getId()).orElse(null)).getProducts());
+            user.setRoles(Objects.requireNonNull(userRepository.findById(user.getId()).orElse(null)).getRoles());
+            user.setProducts(Objects.requireNonNull(userRepository.findById(user.getId()).orElse(null)).getProducts());
             user.setUpdate(false);
         }
-        repository.save(user);
+        userRepository.save(user);
     }
 
     @Override
@@ -66,10 +64,10 @@ public class UserService implements UserDetailsService, IService<User> {
         Converter<User, UserDetails> converter =
                 user -> {
                     Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-                    user.getRoles().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getRole())));
+                    user.getRoles().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
                     return new CustomUserDetails(authorities, user.getUsername(), user.getPassword(), true);
                 };
-        User user = repository.findByUsername(username);
+        User user = userRepository.findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException(username);
         }

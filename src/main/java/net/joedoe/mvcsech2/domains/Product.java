@@ -14,8 +14,8 @@ import java.util.List;
 @Entity
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @NotEmpty
     private String name;
     @NotEmpty

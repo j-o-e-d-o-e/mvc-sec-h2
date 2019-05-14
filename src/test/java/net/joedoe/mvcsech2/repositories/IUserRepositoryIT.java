@@ -16,7 +16,6 @@ public class IUserRepositoryIT {
     @Autowired
     private IUserRepository userRepository;
 
-
     @Before
     public void setUp() {
     }

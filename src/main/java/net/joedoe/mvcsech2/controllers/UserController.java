@@ -58,7 +58,7 @@ public class UserController {
     }
 
     @GetMapping("/added-to-cart/{id}")
-    public String addedToCart(@PathVariable Integer id, Model model, Principal principal) {
+    public String addedToCart(@PathVariable Long id, Model model, Principal principal) {
         Product product = productService.getById(id);
         User user = userService.getByName(principal.getName());
         user.addProduct(product);

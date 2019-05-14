@@ -15,7 +15,7 @@ public class UserTest {
 
     @Test
     public void getId() {
-        Integer id = 1;
+        Long id = 1L;
         user.setId(id);
         assertEquals(id, user.getId());
     }

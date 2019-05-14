@@ -5,7 +5,7 @@ import java.util.List;
 public interface IService<T> {
     List<T> listAll();
 
-    T getById(Integer id);
+    T getById(Long id);
 
     T getByName(String name);
 

@@ -1,6 +1,7 @@
 package net.joedoe.mvcsech2.services;
 
 import net.joedoe.mvcsech2.domains.User;
+import net.joedoe.mvcsech2.repositories.IRoleRepository;
 import net.joedoe.mvcsech2.repositories.IUserRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,13 +17,14 @@ import static org.mockito.Mockito.*;
 public class UserServiceTest {
     private UserService service;
     @Mock
-    private IUserRepository repository;
+    private IUserRepository userRepository;
+    @Mock
+    private IRoleRepository roleRepository;
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        service = new UserService();
-        service.setRepository(repository);
+        service = new UserService(userRepository, roleRepository);
     }
 
     @Test
@@ -33,7 +35,6 @@ public class UserServiceTest {
         when(service.listAll()).thenReturn(usersData);
         List<User> users = service.listAll();
         assertEquals(1, users.size());
-        verify(repository, times(1)).findAll();
-
+        verify(userRepository, times(1)).findAll();
     }
 }
