@@ -7,6 +7,7 @@ This demo project uses spring-mvc, spring-security, jpa-provider hibernate, mysq
 
 ### In-memory h2-db
 - Set `spring.profiles.active=h2` in `application.properties`.
+- Enable `@Profile("h2")` in `BootstrapDataConfig.class` (if commented out)
 - Run `mvn spring-boot:run` or maven wrapper. Navigate to `http://localhost:8080/`.
 - Register a new user or log in with one of the two test-accounts (username/pw):
     - mary/jane (user)
@@ -14,7 +15,7 @@ This demo project uses spring-mvc, spring-security, jpa-provider hibernate, mysq
     
 ### Persistent mysql-db
 - Set `spring.profiles.active=persist` in `application.properties`.
-- Run `docker-compose up -d` from within `resources`-folder.
+- Run `docker-compose up -d` in `resources`-folder.
 - Initialize database:
     - Run `db_create.sql` to set up tables (from preferred db-client).
     - Run `data-h2.sql` to insert roles.
