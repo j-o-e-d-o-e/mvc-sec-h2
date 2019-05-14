@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/mvc_sec
+    url: jdbc:mysql://localhost:3306/mvc_sec?useSSL=false
     username: root
 #    password:
   jpa:

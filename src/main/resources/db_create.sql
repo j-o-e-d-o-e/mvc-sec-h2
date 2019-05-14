@@ -1,9 +1,10 @@
 -- schema to create tables in persist-db
+drop table if exists user_product;
+drop table if exists user_role;
+drop table if exists address;
 drop table if exists product;
 drop table if exists role;
 drop table if exists user;
-drop table if exists user_product;
-drop table if exists user_role;
 
 create table address
 (

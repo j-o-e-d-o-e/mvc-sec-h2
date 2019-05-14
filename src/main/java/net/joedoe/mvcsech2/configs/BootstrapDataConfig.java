@@ -34,12 +34,12 @@ public class BootstrapDataConfig implements ApplicationListener<ContextRefreshed
 
     private void loadUsers() {
         User user1 = new User("Mary", "Jane", "mary", "jane");
-        user1.addAddress(new Address("Main Ave 666", "54321", "Metropolis"));
+        user1.addAddress(new Address("Main Ave 8", "54321", "Metropolis"));
         userService.saveOrUpdate(user1);
 
         User user2 = new User("Joe", "Doe", "joe", "doe");
         user2.addAddress(new Address("Bourbon St 3", "12345", "Seville"));
-        user2.addAddress(new Address("Main Ave 666", "54321", "Metropolis"));
+        user2.addAddress(new Address("Evergreen Terrace 667", "13813", "Metropolis"));
         Role admin = roleRepository.findByName("ROLE_ADMIN").orElse(null);
         assert admin != null;
         log.info(admin.toString());
