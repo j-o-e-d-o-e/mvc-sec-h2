@@ -19,6 +19,7 @@
             <th>Name</th>
             <th>Details</th>
             <th>Price</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -31,6 +32,11 @@
             <td th:text="${product.name}"></td>
             <td><a th:href="@{'/product/'+${product.id}}">Link</a></td>
             <td th:text="${product.price}"></td>
+            <td>
+                <form th:object="${product}" th:action="@{'/remove/'+${product.id}}" th:method="delete">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
         </tr>
         </tbody>
         <tfoot>
@@ -40,6 +46,7 @@
             <td></td>
             <td></td>
             <td th:text="${sum}"></td>
+            <td></td>
         </tr>
         </tfoot>
     </table>

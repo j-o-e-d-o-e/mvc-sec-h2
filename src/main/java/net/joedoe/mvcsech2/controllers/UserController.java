@@ -7,6 +7,7 @@ import net.joedoe.mvcsech2.services.IService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -82,5 +83,16 @@ public class UserController {
         userService.saveOrUpdate(user);
         model.addAttribute("address", user.getAddresses().get(0));
         return "order-done";
+    }
+
+    @DeleteMapping("/remove/{id}")
+    public String removeProduct(@PathVariable Long id, Model model, Principal principal) {
+        Product product = productService.getById(id);
+        User user = userService.getByName(principal.getName());
+        user.removeProduct(product);
+        userService.saveOrUpdate(user);
+        model.addAttribute("name", product.getName());
+        return "removed-from-cart";
+
     }
 }

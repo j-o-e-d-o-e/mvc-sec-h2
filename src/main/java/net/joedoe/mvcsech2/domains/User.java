@@ -67,4 +67,8 @@ public class User {
     public double sum() {
         return products.stream().mapToDouble(Product::getPrice).sum();
     }
+
+    public void removeProduct(Product product) {
+        products.remove(product);
+    }
 }
