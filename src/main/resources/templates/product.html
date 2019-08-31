@@ -29,10 +29,10 @@
 
         <div class="row">
             <div class="col-md-2"
-                 th:text="${product.price > 0 ? 'Price: ' + product.price + ' €' : 'Price: FREE'}"></div>
+                 th:text="${product.price > 0 ? 'Price: ' + #numbers.formatDecimal(product.price, 1, 'COMMA', 2, 'POINT') + ' €' : 'Price: FREE'}"></div>
             <div class="form-group">
                 <div class="col-md-4">
-                    <button type="submit" class="btn btn-default">Put in cart</button>
+                    <button type="submit" class="btn btn-primary">Put in cart</button>
                 </div>
             </div>
         </div>

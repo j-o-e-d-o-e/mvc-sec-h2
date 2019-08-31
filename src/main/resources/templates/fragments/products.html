@@ -21,7 +21,7 @@
         </p>
         <p>
         <div th:text="${product.description}"></div>
-        <div th:text="${product.price > 0 ? product.price + ' €' : 'FREE'}"></div>
+        <div th:text="${product.price > 0 ? #numbers.formatDecimal(product.price, 1, 'COMMA', 2, 'POINT') + ' €' : 'FREE'}"></div>
     </div>
 </div>
 </body>

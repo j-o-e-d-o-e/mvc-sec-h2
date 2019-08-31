@@ -31,7 +31,7 @@
             </td>
             <td th:text="${product.name}"></td>
             <td><a th:href="@{'/product/'+${product.id}}">Link</a></td>
-            <td th:text="${product.price}"></td>
+            <td th:text="${#numbers.formatDecimal(product.price, 1, 'COMMA', 2, 'POINT')}"></td>
             <td>
                 <form th:object="${product}" th:action="@{'/remove/'+${product.id}}" th:method="delete">
                     <button type="submit" class="btn btn-danger">Delete</button>
@@ -45,14 +45,14 @@
             <td></td>
             <td></td>
             <td></td>
-            <td th:text="${sum}"></td>
+            <td th:text="${#numbers.formatDecimal(sum, 1, 'COMMA', 2, 'POINT')}"></td>
             <td></td>
         </tr>
         </tfoot>
     </table>
     <div class="row">
         <div class="col-md-3 pull-right">
-            <a href="/order-done" class="btn btn-default" role="button">Order</a>
+            <a href="/order-done" class="btn btn-success" role="button">Order</a>
         </div>
     </div>
 </div>
