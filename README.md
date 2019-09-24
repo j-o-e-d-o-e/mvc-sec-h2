@@ -22,3 +22,6 @@ This demo project uses spring-mvc, spring-security, jpa-provider hibernate, mysq
     - Comment out `@Profile("h2")` in `BootstrapDataConfig.class` to insert bootstrap-data (only for first run).
 - Run `mvn spring-boot:run` or maven wrapper. Navigate to `http://localhost:8080/`.
 - Register or log in with test-accounts ...
+
+### Live demo
+- Published on [heroku](https://mvc-sec-sql.herokuapp.com/) (long startup ~20 sec).
